@@ -1,0 +1,6 @@
+# OS / editor junk — this repo should contain nothing but inbox/, outbox/, and this README
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
