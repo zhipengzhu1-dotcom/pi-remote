@@ -23,15 +23,18 @@ That's it. The desktop daemon polls every 15–30 seconds, picks up new
 Each processed prompt produces a directory in `outbox/`:
 
 ```
-outbox/<timestamp>/
+outbox/<prompt-filename>/
   prompt.md        # echo of the original prompt (verbatim)
   transcript.md    # full transcript of the agent run
   status.md        # ok | failed, exit status, and error detail on failure
 ```
 
-The timestamp directory name matches the run's start time (UTC, ISO 8601),
-so it doubles as the audit trail: every prompt ever sent and every run's full
-transcript stay in this repo forever.
+The directory name **matches the prompt's `inbox/` filename** (`inbox/hello.md`
+→ `outbox/hello.md/`), so a prompt and its result are trivially matched. A
+re-run of an edited prompt (same name, new content) takes a `-2`, `-3`, …
+suffix — every run keeps its own directory, and the full history stays in
+this repo forever. Chronological order is carried by `git log` and the
+`started`/`duration` lines in each `status.md`, not by directory names.
 
 ## Semantics
 
@@ -41,7 +44,7 @@ transcript stay in this repo forever.
   queue here and are processed FIFO on the next start. Sending a prompt means
   "runs when the PC is on", not "runs now".
 - **Processed prompts:** the daemon marks a prompt handled by creating its
-  `outbox/<timestamp>/` directory. A prompt is considered in-flight from the
+  `outbox/<prompt-filename>/` directory. A prompt is considered in-flight from the
   moment a run starts, so a daemon restart never double-runs it.
 
 ## Rules
