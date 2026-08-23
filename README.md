@@ -24,6 +24,7 @@ Each processed prompt produces a directory in `outbox/`:
 
 ```
 outbox/<prompt-filename>/
+  output.md        # just the final answer — read this first
   prompt.md        # echo of the original prompt (verbatim)
   transcript.md    # full transcript of the agent run
   status.md        # ok | failed, exit status, and error detail on failure
