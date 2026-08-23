@@ -36,8 +36,10 @@ transcript stay in this repo forever.
 ## Semantics
 
 - **Multiple prompts:** processed one at a time, in the order they were pushed.
-- **PC asleep/off:** prompts queue here and are processed FIFO on wake.
-  Sending a prompt means "runs when the PC is on", not "runs now".
+- **PC off:** the desktop is assumed always-on (it never sleeps). If the PC
+  shuts down (power loss or manual shutdown) the daemon simply halts; prompts
+  queue here and are processed FIFO on the next start. Sending a prompt means
+  "runs when the PC is on", not "runs now".
 - **Processed prompts:** the daemon marks a prompt handled by creating its
   `outbox/<timestamp>/` directory. A prompt is considered in-flight from the
   moment a run starts, so a daemon restart never double-runs it.
