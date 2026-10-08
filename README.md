@@ -55,3 +55,7 @@ this repo forever. Chronological order is carried by `git log` and the
   stray markdown, no notes. If you need to park something here, it's a prompt.
 - Credentials (the daemon's PAT) live in the desktop environment, never in
   this repo.
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
